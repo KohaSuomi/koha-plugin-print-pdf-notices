@@ -1,0 +1,44 @@
+<div class="header">
+    <div class="sender">
+        <div class="library">
+            <p><ul class="info"><li><<branches.branchname>></li>
+                <li><<branches.branchaddress1>></li>
+                <li><<branches.branchzip>> <<branches.branchcity>></li>
+                <li><<branches.branchphone>></li>
+            </ul></p>
+        </div>
+        <div class="noticeheader">
+            <p><ul class="info"><li>1. palautuskehotus</li>
+                <li><<today>></li>
+            </ul></p>
+        </div>
+    </div>
+</div>
+<div class="recipient">
+    <p><ul class="info">
+        <li><<borrowers.firstname>>  <<borrowers.surname>></li>
+        <li><<borrowers.address>></li>
+        <li><<borrowers.zipcode>> <<borrowers.city>></li>
+    </ul></p>
+</div>
+<div class="content">
+    <p>Asiakasnumero: <<borrowers.cardnumber>></p>
+    <p>Seuraavat lainanne ovat myöhässä. Palauttakaa tai uusikaa lainaamanne aineisto mahdollisimman pian. Myöhästymismaksua kertyy 0,20 €/vrk/teos eräpäivästä lähtien, kunnes aineisto on palautettu tai uusittu. Alle 18-vuotiaiden kirjalainoista myöhästymismaksua ei kuitenkaan peritä.</p>
+    <p>Tästä kirjeestä peritään lisäksi 1 € huomautusmaksua. Sähköpostiin lähetettävä palautuskehotus on maksuton, joten pyydämme ilmoittamaan voimassa olevan sähköpostiosoitteen kirjastoon.</p>
+    <p>Lainojen palauttamatta jättämisestä seuraa palautus/korvauskehotus 28 vrk:n kuluttua eräpäivästä ja lainauskielto. Epäselvissä tapauksissa ottakaa yhteys siihen kirjastoon, josta aineisto on lainattu.</p>
+    <p>Nämä lainat ovat erääntyneet:</p>
+    <p>   
+        <item>Tekijä: <<biblio.author>>
+        Nimeke: <<biblio.title>>
+        Aineistolaji: <<biblioitems.itemtype>>
+        Nide: <<items.barcode>>
+        Lainattu: <<issues.issuedate>>, <<issues.issuingbranch>>
+        Eräpäivä: <<issues.date_due>> </item>
+    </p><br/><br/>
+    <hr/>
+    <<branches.branchname>>
+    <<branches.branchaddress1>>
+    <<branches.branchzip>> <<branches.branchcity>>
+    Puhelin: <<branches.branchphone>>
+    Sähköposti: <<branches.branchemail>>
+</div>

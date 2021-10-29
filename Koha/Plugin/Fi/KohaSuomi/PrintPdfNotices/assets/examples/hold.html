@@ -1,0 +1,46 @@
+<div class="header">
+    <div class="sender">
+        <div class="library">
+            <p><ul class="info"><li><<branches.branchname>></li>
+                <li><<branches.branchaddress1>></li>
+                <li><<branches.branchzip>> <<branches.branchcity>></li>
+                <li><<branches.branchphone>></li>
+            </ul></p>
+        </div>
+        <div class="noticeheader">
+            <p><ul class="info"><li>Noutoilmoitus</li>
+                <li><<today>></li>
+            </ul></p>
+        </div>
+    </div>
+</div>
+<div class="recipient">
+    <p><ul class="info">
+        <li><<borrowers.firstname>>  <<borrowers.surname>></li>
+        <li><<borrowers.address>></li>
+        <li><<borrowers.zipcode>> <<borrowers.city>></li>
+    </ul></p>
+</div>
+<div class="content">
+    <p>Varaustunnus: <<borrowers.othernames>></p>
+    <p>
+        Varaamanne teos on saapunut kirjastoon <<branches.branchname>>.<br/>
+        Noudettava viimeistään: <<reserves.expirationdate>>.<br/>
+        Varaus on maksuton, mutta noutamaton varaus maksaa 1 €.
+    </p>
+    <p>
+        Tekijä: <<biblio.author>><br/>
+        Nimeke: <<biblio.title>><br/>
+        Aineistolaji: <<items.itype>><br/>
+        Nide: <<items.barcode>><br/>
+    </p>
+    <p>   
+        Varauksen saapumisilmoitus kulkee kirjeen sijasta nopeammin tekstiviestinä. Jos haluatte jatkossa ilmoitukset mieluummin tekstiviestinä, pyytäkää seuraavan kerran kirjastossa käydessänne henkilökuntaa tekemään muutos asiakastietoihinne. Muutoksen voi tehdä myös itse kirjautumalla verkkokirjaston viestiasetuksiin.
+    </p><br/><br/>
+    <hr/>
+    <<branches.branchname>><br/>
+    <<branches.branchaddress1>><br/>
+    <<branches.branchzip>> <<branches.branchcity>><br/>
+    Puhelin: <<branches.branchphone>><br/>
+    Sähköposti: <<branches.branchemail>><br/>
+</div>

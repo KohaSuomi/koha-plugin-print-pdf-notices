@@ -8,7 +8,7 @@
             </ul></p>
         </div>
         <div class="noticeheader">
-            <p><ul class="info"><li>Ilmoitus</li>
+            <p><ul class="info"><li>2. palautuskehotus</li>
                 <li><<today>></li>
             </ul></p>
         </div>
@@ -23,17 +23,20 @@
 </div>
 <div class="content">
     <p>Asiakasnumero: <<borrowers.cardnumber>></p>
-    <p>Seuraavat lainanne ovat myöhässä. Palauttakaa tai uusikaa lainaamanne aineisto mahdollisimman pian. Myöhästymismaksua kertyy 0,20 €/vrk/teos eräpäivästä lähtien, kunnes aineisto on palautettu tai uusittu. Alle 18-vuotiaiden kirjalainoista myöhästymismaksua ei kuitenkaan peritä.</p>
-    <p>Tästä kirjeestä peritään lisäksi 1 € huomautusmaksua. Sähköpostiin lähetettävä palautuskehotus on maksuton, joten pyydämme ilmoittamaan voimassa olevan sähköpostiosoitteen kirjastoon.</p>
-    <p>Lainojen palauttamatta jättämisestä seuraa palautus/korvauskehotus 28 vrk:n kuluttua eräpäivästä ja lainauskielto. Epäselvissä tapauksissa ottakaa yhteys siihen kirjastoon, josta aineisto on lainattu.</p>
+    <p>Seuraavat lainanne ovat edelleen palauttamatta. Pyydämme teitä palauttamaan ne mahdollisimman pian.</p>
+    <p>Tämä kehotus on johtanut lainauskieltoon. Lainausoikeutenne palautuu, kun kaikki aineisto on palautettu tai korvattu ja kaikki maksut on maksettu.</p>
+    <p>Jos aineisto on kadonnut, ottakaa yhteyttä sen korvaamiseksi. Ellei aineistoa palauteta, lähetämme laskun ja veloitamme 10 € palauttamattoman aineiston käsittelykuluja. Mikäli asiaa ei edelleenkään hoideta, siirtyy se perintätoimiston hoidettavaksi Siilinjärven kunnan perintäkäytäntöjen mukaisesti. Tällöin maksettavaksi tulevat palauttamattoman aineiston korvaushinta sekä myöhästymis- ja perintäkulut.</p>
     <p>Nämä lainat ovat erääntyneet:</p>
     <p>   
         <item>Tekijä: <<biblio.author>>
         Nimeke: <<biblio.title>>
-        Aineistolaji: <<items.itype>>
+        Aineistolaji: <<biblioitems.itemtype>>
         Nide: <<items.barcode>>
         Lainattu: <<issues.issuedate>>, <<issues.issuingbranch>>
         Eräpäivä: <<issues.date_due>> </item>
+    </p>
+    <p>
+        Tästä kirjeestä peritään lisäksi 1 € huomautusmaksua. Sähköpostiin lähetettävä palautuskehotus on maksuton, joten pyydämme ilmoittamaan voimassa olevan sähköpostiosoitteen kirjastoon.
     </p><br/><br/>
     <hr/>
     <<branches.branchname>>
@@ -41,5 +44,4 @@
     <<branches.branchzip>> <<branches.branchcity>>
     Puhelin: <<branches.branchphone>>
     Sähköposti: <<branches.branchemail>>
-    Uusi verkkokirjasto: https://siilinjarvenkirjasto.finna.fi
 </div>
