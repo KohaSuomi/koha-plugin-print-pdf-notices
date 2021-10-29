@@ -58,8 +58,12 @@ new Vue({
       store.commit('setNotice', notice);
       this.printPDF();
     },
+    declinePDF() {
+      store.dispatch('editNotice', 'failed');
+      this.fetch();
+    },
     printPDF() {
-      store.dispatch('editNotice');
+      store.dispatch('editNotice', 'sent');
       printJS({
         printable: 'printDoc',
         type: 'html',

@@ -56,11 +56,11 @@ const store = new Vuex.Store({
           commit('addError', error.response.data.error);
         });
     },
-    editNotice({ commit, state }) {
+    editNotice({ commit, state }, status) {
       commit('showLoader', true);
       commit('removeErrors');
       axios
-        .put('/api/v1/notices/' + state.messageId, { status: 'sent' })
+        .put('/api/v1/notices/' + state.messageId, { status: status })
         .then((response) => {
           commit('showLoader', false);
         })
