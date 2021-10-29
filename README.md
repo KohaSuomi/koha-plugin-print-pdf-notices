@@ -1,7 +1,6 @@
-
 # Koha-Suomi plugin PrintPdfNotices
 
-This is the plugin description
+This tool fetches ODUE1, ODUE2 and HOLD notices for printing
 
 # Downloading
 
@@ -28,8 +27,3 @@ To set up the Koha plugin system you must first make some changes to your instal
     Restart your webserver
 
 Once set up is complete you will need to alter your UseKohaPlugins system preference. On the Tools page you will see the Tools Plugins and on the Reports page you will see the Reports Plugins.
-
-# Configuring
-
-Here is the place for configurations
-
