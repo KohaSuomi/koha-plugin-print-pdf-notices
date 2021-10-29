@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>Koha-Suomi - Tulosta ilmoituksia</title>
+	<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<!-- Bootstrap core CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+		<link href="[% PLUGIN_PATH %]/assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="[% PLUGIN_PATH %]/assets/css/light-bootstrap-dashboard.css?v=2.0.0 " rel="stylesheet" />
+		<!-- Custom styles for this template-->
+		<script src="https://unpkg.com/vue"></script>
+		<script src="https://unpkg.com/vuex"></script>
+		<script src="https://unpkg.com/vuejs-datepicker"></script>
+		<script src="https://unpkg.com/vuejs-datepicker/dist/locale/translations/fi.js"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
+		<script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://printjs-4de6.kxcdn.com/print.min.css">
+		<!--     Fonts and icons     -->
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+		<!-- CSS Files -->
+	</head>
+	<body>	
+		<div class="wrapper" id="viewApp">
+			<div class="sidebar" data-color="green" data-image="[% PLUGIN_PATH %]/assets/img/sidebar-5.jpg">
+				<div class="sidebar-wrapper">
+					<div class="logo">
+						<span class="simple-text">Tulosta ilmoituksia</span>
+					</div>
+					<ul class="nav">
+						<li v-if="invoicespage">
+							<a class="nav-link" href="#" @click="showPage('HOLDS')">
+								<i class="nc-icon nc-notes"></i>
+								<p>Noutoilmoitukset</p>
+							</a>
+						</li>
+						<li v-if="firstnoticepage">
+							<a class="nav-link" href="#" @click="showPage('ODUE1')">
+								<i class="nc-icon nc-email-85"></i>
+								<p>1. muistutus</p>
+							</a>
+						</li>
+						<li v-if="secondnoticepage">
+							<a class="nav-link" href="#" @click="showPage('ODUE2')">
+								<i class="nc-icon nc-email-85"></i>
+								<p>2. muistutus</p>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="main-panel">
+				<!-- Navbar -->
+				<nav class="navbar navbar-expand-lg " color-on-scroll="500">
+					<div class="container-fluid">
+						<a class="navbar-brand">
+						{{pagename}}
+						</a>
+					</div>
+				</nav>
+				<div class="content">
+					<div class="container-fluid">
+						<main role="main" class="ml-sm-auto pt-3 px-4">
+						<div>
+							<div class="alert alert-danger" role="alert" v-if="errors.length">
+								<b>Tapahtui virhe:</b>
+								<ul class="text-danger">
+									<li v-for="error in errors">{{ error }}</li>
+								</ul>
+							</div>
+							<div v-if="showPDF">
+								<ul class="nav nav-pills mb-3 mt-3 justify-content-center">
+									<li class="nav-item pr-2">
+										<button class="btn btn-default" v-on:click="back">Takaisin</button>
+									</li>
+									<li class="nav-item pr-2">
+										<button class="btn btn-success btn-fill" v-on:click="printPDF">Tulosta</button>
+									</li>
+								</ul>
+								<hr/>
+								<div class="flex-row">
+									<div :class="{'d-none': !showLoader }">
+										<div class="row w-100 p-3">
+											<div class="col text-center">
+												<i class="fas fa-circle-notch fa-spin fa-3x"></i>
+											</div>
+										</div>
+									</div>
+									<div class="d-flex justify-content-center" :class="{'d-none': showLoader }">
+										<div id="printDoc" class="preview a4-width" v-html="notice"></div>
+									</div>
+								</div>
+							</div>
+							<div v-else>
+								<table class="table table-hover table-striped">
+									<thead>
+										<th>Asiakasnumero</th>
+										<th>Toiminnot</th>
+									</thead>
+									<tbody>
+										<tr v-for="result in results" :key="result.message_id">
+											<td>{{result.borrowernumber}}</td>
+											<td><button class="btn btn-success btn-fill" v-on:click="messagePDF(result.content, result.message_id)">PDF</button></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						</main>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Bootstrap core JavaScript
+		================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<!-- Icons -->
+		<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+		<script type="module" src="[% PLUGIN_PATH %]/js/main.js"></script>
+		<link rel="stylesheet" href="[% PLUGIN_PATH %]/assets/css/pdf.css">
+		<style>
+			.odd-cell {
+				background-color: #eee;
+			}
+			.badgebox
+			{
+				opacity: 0;
+			}
+			.badgebox + .badge
+			{
+				text-indent: -999999px;
+				width: 27px;
+				background: #fff;
+			}
+			.badgebox:focus + .badge
+			{
+				box-shadow: inset 0px 0px 5px;
+			}
+
+			.badgebox:checked + .badge
+			{
+				text-indent: 0;
+				color: #000;
+			}
+		</style>
+	</body>
+</html>
