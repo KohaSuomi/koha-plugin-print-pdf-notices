@@ -58,7 +58,8 @@ new Vue({
       store.commit('setNotice', notice);
       this.printPDF();
     },
-    declinePDF() {
+    declinePDF(message_id) {
+      store.commit('setMessageId', message_id);
       store.dispatch('editNotice', 'failed');
       this.fetch();
     },
