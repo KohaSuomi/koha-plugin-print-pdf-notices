@@ -54,8 +54,8 @@
 .preview .sender {
   padding-bottom: 30mm;
 }
-.preview .billheader,
-.preview .billfooter {
+.preview .noticeheader,
+.preview .noticefooter {
   position: absolute;
   right: 0;
   top: 0;
