@@ -40,7 +40,7 @@ new Vue({
         this.pagename = '2. muistutus';
         this.fetch();
       }
-      if (val == 'HOLDS') {
+      if (val == 'HOLD') {
         this.pagename = 'Noutoilmoitukset';
         this.fetch();
       }

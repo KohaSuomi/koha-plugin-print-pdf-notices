@@ -33,7 +33,7 @@
 					</div>
 					<ul class="nav">
 						<li>
-							<a class="nav-link" href="#" @click="showPage('HOLDS')">
+							<a class="nav-link" href="#" @click="showPage('HOLD')">
 								<i class="nc-icon nc-notes"></i>
 								<p>Noutoilmoitukset</p>
 							</a>
