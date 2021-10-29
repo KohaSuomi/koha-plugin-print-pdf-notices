@@ -11,8 +11,7 @@ new Vue({
       pdftemp: '',
     };
   },
-  mounted() {
-  },
+  mounted() {},
   computed: {
     results() {
       return store.state.results;
@@ -32,7 +31,7 @@ new Vue({
   },
   methods: {
     showPage(val) {
-      store.commit('setPDFTemp') = val;
+      store.commit('setPDFTemp', val);
       if (val == 'ODUE1') {
         this.pagename = '1. muistutus';
         this.fetch();
@@ -48,12 +47,16 @@ new Vue({
     },
     fetch() {
       store.dispatch('fetchMessages');
-      this.activate();
     },
-    messagePDF(notice, message_id) {
+    previewPDF(notice, message_id) {
       store.commit('setMessageId', message_id);
       store.commit('setNotice', notice);
       this.showPDF = true;
+    },
+    printMessagePDF(notice, message_id) {
+      store.commit('setMessageId', message_id);
+      store.commit('setNotice', notice);
+      this.printPDF();
     },
     printPDF() {
       store.dispatch('editNotice');
@@ -61,10 +64,19 @@ new Vue({
         printable: 'printDoc',
         type: 'html',
         css: '/plugin/Koha/Plugin/Fi/KohaSuomi/OverdueTool/css/pdf.css',
+        documentTitle:
+          store.state.pdfTemp + '_ilmoitus_' + store.state.messageId,
       });
+      this.back();
+      this.fetch();
     },
     back() {
       this.showPDF = false;
-    }
+    },
+  },
+  filters: {
+    moment: function (date) {
+      return moment(date).locale('fi').format('DD.MM.YYYY HH:MM:SS');
+    },
   },
 });

@@ -3,6 +3,7 @@ const store = new Vuex.Store({
     results: [],
     errors: [],
     totalResults: 0,
+    showLoader: false,
     notice: '',
     pdfTemp: '',
     messageId: null,
@@ -30,6 +31,9 @@ const store = new Vuex.Store({
     setMessageId(state, value) {
       state.messageId = value;
     },
+    showLoader(state, value) {
+      state.showLoader = value;
+    },
   },
   actions: {
     fetchMessages({ commit, state }) {
@@ -56,9 +60,7 @@ const store = new Vuex.Store({
       commit('showLoader', true);
       commit('removeErrors');
       axios
-        .put('/api/v1/notices/' + state.messageId, {
-          params: { status: 'sent' },
-        })
+        .put('/api/v1/notices/' + state.messageId, { status: 'sent' })
         .then((response) => {
           commit('showLoader', false);
         })

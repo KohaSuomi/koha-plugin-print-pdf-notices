@@ -32,19 +32,19 @@
 						<span class="simple-text">Tulosta ilmoituksia</span>
 					</div>
 					<ul class="nav">
-						<li v-if="invoicespage">
+						<li>
 							<a class="nav-link" href="#" @click="showPage('HOLDS')">
 								<i class="nc-icon nc-notes"></i>
 								<p>Noutoilmoitukset</p>
 							</a>
 						</li>
-						<li v-if="firstnoticepage">
+						<li>
 							<a class="nav-link" href="#" @click="showPage('ODUE1')">
 								<i class="nc-icon nc-email-85"></i>
 								<p>1. muistutus</p>
 							</a>
 						</li>
-						<li v-if="secondnoticepage">
+						<li>
 							<a class="nav-link" href="#" @click="showPage('ODUE2')">
 								<i class="nc-icon nc-email-85"></i>
 								<p>2. muistutus</p>
@@ -98,13 +98,21 @@
 							<div v-else>
 								<table class="table table-hover table-striped">
 									<thead>
-										<th>Asiakasnumero</th>
+										<th>Aikaleima</th>
+										<th>AsiakasId</th>
+										<th>Sähköposti</th>
+										<th>Kirjaston sähköposti</th>
 										<th>Toiminnot</th>
 									</thead>
 									<tbody>
 										<tr v-for="result in results" :key="result.message_id">
+											<td>{{result.time_queued | moment}}</td>
 											<td>{{result.borrowernumber}}</td>
-											<td><button class="btn btn-success btn-fill" v-on:click="messagePDF(result.content, result.message_id)">PDF</button></td>
+											<td>{{result.to_address}}</td>
+											<td>{{result.from_address}}</td>
+											<td>
+												<button class="btn btn-success btn-fill" v-on:click="previewPDF(result.content, result.message_id)">Tulosta</button>
+											</td>
 										</tr>
 									</tbody>
 								</table>
