@@ -7,11 +7,16 @@ new Vue({
     return {
       showPDF: false,
       pagename: '',
-      rules: {},
       pdftemp: '',
     };
   },
-  mounted() {},
+  mounted() {
+    store.commit('setLibraryEmail', jsondata.libraryemail);
+    store.commit('setLibraryName', jsondata.libraryname);
+    store.commit('setPDFTemp', 'HOLD');
+    this.pagename = 'Noutoilmoitukset';
+    this.fetch();
+  },
   computed: {
     results() {
       return store.state.results;
@@ -27,6 +32,9 @@ new Vue({
     },
     notice() {
       return store.state.notice;
+    },
+    libraryname() {
+      return store.state.libraryName;
     },
   },
   methods: {

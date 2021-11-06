@@ -7,6 +7,8 @@ const store = new Vuex.Store({
     notice: '',
     pdfTemp: '',
     messageId: null,
+    libraryEmail: '',
+    libraryName: '',
   },
   mutations: {
     addError(state, value) {
@@ -31,6 +33,12 @@ const store = new Vuex.Store({
     setMessageId(state, value) {
       state.messageId = value;
     },
+    setLibraryEmail(state, value) {
+      state.libraryEmail = value;
+    },
+    setLibraryName(state, value) {
+      state.libraryName = value;
+    },
     showLoader(state, value) {
       state.showLoader = value;
     },
@@ -43,6 +51,7 @@ const store = new Vuex.Store({
       searchParams.append('status', 'pending');
       searchParams.append('message_transport_type', 'print');
       searchParams.append('letter_code', state.pdfTemp);
+      searchParams.append('from_address', state.libraryEmail);
 
       axios
         .get('/api/v1/notices', {
