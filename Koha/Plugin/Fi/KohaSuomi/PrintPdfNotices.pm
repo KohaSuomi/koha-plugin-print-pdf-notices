@@ -10,14 +10,14 @@ use C4::Context;
 use utf8;
 
 ## Here we set our plugin version
-our $VERSION = "1.0.6";
+our $VERSION = "1.0.7";
 
 ## Here is our metadata, some keys are required, some are optional
 our $metadata = {
     name            => 'Tulosta ilmoituksia',
     author          => 'Johanna Räisä',
     date_authored   => '2021-10-29',
-    date_updated    => '2021-10-29',
+    date_updated    => '2021-11-06',
     minimum_version => '17.05',
     maximum_version => '',
     version         => $VERSION,
@@ -71,6 +71,23 @@ sub tool {
     my ( $self, $args ) = @_;
     my $cgi = $self->{'cgi'};
     my $template = $self->get_template({ file => 'tool.tt' });
+    my $branchcode = C4::Context->userenv->{'branch'};
+    my $json = {
+        userlibrary => $branchcode
+    };
+    my $library;
+    if ($branchcode) {
+        $library = Koha::Libraries->find($branchcode);
+        $json->{libraryemail} = $library->branchemail;
+        $json->{libraryreplyto} = $library->branchreplyto;
+        $json->{libraryreturnpath} = $library->branchreturnpath;
+        $json->{libraryname} = $library->branchname;
+
+    }
+    
+    $template->param(
+        data => JSON::to_json($json)
+    );
     print $cgi->header(-charset    => 'utf-8');
     print $template->output();
 }
