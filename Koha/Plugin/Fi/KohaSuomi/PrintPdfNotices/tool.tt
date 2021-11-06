@@ -139,7 +139,6 @@
 		<link rel="stylesheet" href="[% PLUGIN_PATH %]/assets/css/pdf.css">
 		<script>
 			var jsondata = JSON.parse('[% data %]');
-			console.log(jsondata);
 		</script>
 		<style>
 			.odd-cell {
