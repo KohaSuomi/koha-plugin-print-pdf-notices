@@ -46,6 +46,7 @@ const store = new Vuex.Store({
   actions: {
     fetchMessages({ commit, state }) {
       commit('removeErrors');
+      commit('addResults', []);
       commit('showLoader', true);
       var searchParams = new URLSearchParams();
       searchParams.append('status', 'pending');
