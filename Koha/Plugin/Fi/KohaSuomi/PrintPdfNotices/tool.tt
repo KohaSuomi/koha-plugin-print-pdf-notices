@@ -136,7 +136,7 @@
 		<!-- Icons -->
 		<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
 		<script type="module" src="[% PLUGIN_PATH %]/js/main.js"></script>
-		<link rel="stylesheet" href="[% PLUGIN_PATH %]/assets/css/pdf.css">
+		<link rel="stylesheet" href="[% PLUGIN_PATH %]/css/pdf.css">
 		<script>
 			var jsondata = JSON.parse('[% data %]');
 		</script>
