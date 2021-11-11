@@ -53,6 +53,7 @@
 
 .preview .sender {
   padding-bottom: 30mm;
+  position: relative;
 }
 .preview .noticeheader,
 .preview .noticefooter {
