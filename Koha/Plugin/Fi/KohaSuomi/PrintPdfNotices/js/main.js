@@ -76,7 +76,7 @@ new Vue({
       printJS({
         printable: 'printDoc',
         type: 'html',
-        css: '/plugin/Koha/Plugin/Fi/KohaSuomi/OverdueTool/assets/css/pdf.css',
+        css: '/plugin/Koha/Plugin/Fi/KohaSuomi/OverdueTool/css/pdf.css',
         documentTitle:
           store.state.pdfTemp + '_ilmoitus_' + store.state.messageId,
       });

@@ -10,14 +10,14 @@ use C4::Context;
 use utf8;
 
 ## Here we set our plugin version
-our $VERSION = "1.0.8";
+our $VERSION = "1.0.9";
 
 ## Here is our metadata, some keys are required, some are optional
 our $metadata = {
     name            => 'Tulosta ilmoituksia',
     author          => 'Johanna Räisä',
     date_authored   => '2021-10-29',
-    date_updated    => '2021-11-06',
+    date_updated    => '2021-11-11',
     minimum_version => '17.05',
     maximum_version => '',
     version         => $VERSION,
