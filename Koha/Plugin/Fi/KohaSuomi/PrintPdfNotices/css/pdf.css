@@ -3,7 +3,7 @@
 }
 .preview .header,
 .preview .footer {
-  margin-top: 20mm;
+  margin-top: 0;
   margin-left: 21mm;
   margin-right: 21mm;
   height: 30mm;
@@ -52,7 +52,7 @@
 }
 
 .preview .sender {
-  padding-bottom: 30mm;
+  padding-bottom: 0;
   position: relative;
 }
 .preview .noticeheader,
