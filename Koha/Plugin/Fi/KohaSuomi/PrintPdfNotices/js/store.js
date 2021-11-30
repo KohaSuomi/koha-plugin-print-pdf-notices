@@ -9,6 +9,7 @@ const store = new Vuex.Store({
     messageId: null,
     libraryEmail: '',
     libraryName: '',
+    userLibrary: '',
   },
   mutations: {
     addError(state, value) {
@@ -19,6 +20,9 @@ const store = new Vuex.Store({
     },
     addResults(state, value) {
       state.results = value;
+    },
+    pushResults(state, value) {
+      state.results.push(value);
     },
     addTotalResults(state, value) {
       state.totalResults = value;
@@ -39,42 +43,67 @@ const store = new Vuex.Store({
     setLibraryName(state, value) {
       state.libraryName = value;
     },
+    setUserLibrary(state, value) {
+      state.userLibrary = value;
+    },
     showLoader(state, value) {
       state.showLoader = value;
     },
   },
   actions: {
-    fetchMessages({ commit, state }) {
+    fetchMessages({ dispatch, commit, state }) {
       commit('removeErrors');
-      commit('addResults', []);
       commit('showLoader', true);
       var searchParams = new URLSearchParams();
       searchParams.append('status', 'pending');
       searchParams.append('message_transport_type', 'print');
       searchParams.append('letter_code', state.pdfTemp);
-      searchParams.append('from_address', state.libraryEmail);
+      //searchParams.append('from_address', state.libraryEmail);
 
       axios
         .get('/api/v1/notices', {
           params: searchParams,
         })
         .then((response) => {
-          commit('addResults', response.data);
-          commit('showLoader', false);
+          dispatch('getPatrons', response.data);
         })
         .catch((error) => {
+          commit('showLoader', false);
           commit('addError', error.response.data.error);
         });
+    },
+    async getPatrons({ commit, state }, payload) {
+      commit('addResults', []);
+      const promises = [];
+      payload.forEach((element) => {
+        promises.push(
+          axios
+            .get('/api/v1/patrons/' + element.borrowernumber)
+            .then((response) => {
+              if (state.userLibrary == response.data.branchcode) {
+                element.librarycode = response.data.branchcode;
+                commit('pushResults', element);
+              }
+            })
+            .catch((error) => {
+              commit('addError', error.response.data.error);
+            })
+        );
+      });
+      await Promise.all(promises).then(() => {
+        commit('showLoader', false);
+      });
     },
     editNotice({ commit, state }, status) {
       commit('showLoader', true);
       commit('removeErrors');
       axios
         .put('/api/v1/notices/' + state.messageId, { status: status })
-        .then((response) => {
+        .then(() => {
           commit('showLoader', false);
         })
         .catch((error) => {
+          commit('showLoader', false);
           commit('addError', error.response.data.error);
         });
     },

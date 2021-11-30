@@ -72,13 +72,6 @@
 									<li v-for="error in errors">{{ error }}</li>
 								</ul>
 							</div>
-							<div :class="{'d-none': !showLoader }">
-								<div class="row w-100 p-3">
-									<div class="col text-center">
-										<h3><i class="nc-icon spin nc-circle"></i></h3>
-									</div>
-								</div>
-							</div>
 							<div v-if="showPDF">
 								<ul class="nav nav-pills mb-3 mt-3 justify-content-center">
 									<li class="nav-item pr-2">
@@ -100,6 +93,7 @@
 									<thead>
 										<th>Aikaleima</th>
 										<th>AsiakasId</th>
+										<th>Kirjastopiste</th>
 										<th>Sähköposti</th>
 										<th>Kirjaston sähköposti</th>
 										<th>Toiminnot</th>
@@ -108,6 +102,7 @@
 										<tr v-for="result in results" :key="result.message_id">
 											<td>{{result.time_queued | moment}}</td>
 											<td>{{result.borrowernumber}}</td>
+											<td>{{result.librarycode}}</td>
 											<td>{{result.to_address}}</td>
 											<td>{{result.from_address}}</td>
 											<td>
@@ -119,6 +114,13 @@
 								</table>
 								<div v-if="results.length == 0" :class="{'d-none': showLoader }" class="alert alert-warning" role="alert">
 									Ei odottavia ilmoituksia kirjastopisteelle {{libraryname}}!
+								</div>
+							</div>
+							<div :class="{'d-none': !showLoader }">
+								<div class="row w-100 p-3">
+									<div class="col text-center">
+										<h3><i class="nc-icon spin nc-circle"></i></h3>
+									</div>
 								</div>
 							</div>
 						</div>

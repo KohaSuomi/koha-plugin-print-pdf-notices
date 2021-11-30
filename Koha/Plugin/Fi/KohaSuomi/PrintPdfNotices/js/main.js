@@ -11,6 +11,7 @@ new Vue({
     };
   },
   mounted() {
+    store.commit('setUserLibrary', jsondata.userlibrary);
     store.commit('setLibraryEmail', jsondata.libraryemail);
     store.commit('setLibraryName', jsondata.libraryname);
     store.commit('setPDFTemp', 'HOLD');
