@@ -54,6 +54,7 @@ const store = new Vuex.Store({
     fetchMessages({ dispatch, commit, state }) {
       commit('removeErrors');
       commit('showLoader', true);
+      commit('addResults', []);
       var searchParams = new URLSearchParams();
       searchParams.append('status', 'pending');
       searchParams.append('message_transport_type', 'print');
@@ -73,7 +74,6 @@ const store = new Vuex.Store({
         });
     },
     async getPatrons({ commit, state }, payload) {
-      commit('addResults', []);
       const promises = [];
       payload.forEach((element) => {
         promises.push(
