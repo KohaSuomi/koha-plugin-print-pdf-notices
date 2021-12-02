@@ -74,13 +74,15 @@ const store = new Vuex.Store({
         });
     },
     async getPatrons({ commit, state }, payload) {
+      let threeletters = state.userLibrary.substring(0, 3); // This works only if library code's municipal code size is three characters.
       const promises = [];
       payload.forEach((element) => {
         promises.push(
           axios
             .get('/api/v1/patrons/' + element.borrowernumber)
             .then((response) => {
-              if (state.userLibrary == response.data.branchcode) {
+              let brthreeletters = response.data.branchcode.substring(0, 3);
+              if (threeletters == brthreeletters) {
                 element.librarycode = response.data.branchcode;
                 commit('pushResults', element);
               }
