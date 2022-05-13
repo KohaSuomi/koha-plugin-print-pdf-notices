@@ -12,8 +12,8 @@
 		<link href="[% PLUGIN_PATH %]/assets/css/bootstrap.min.css" rel="stylesheet" />
 		<link href="[% PLUGIN_PATH %]/assets/css/light-bootstrap-dashboard.css?v=2.0.0 " rel="stylesheet" />
 		<!-- Custom styles for this template-->
-		<script src="https://unpkg.com/vue"></script>
-		<script src="https://unpkg.com/vuex"></script>
+		<script src="https://unpkg.com/vue@2.6.14/dist/vue.min.js"></script>
+		<script src="https://unpkg.com/vuex@3.6.2/dist/vuex.min.js"></script>
 		<script src="https://unpkg.com/vuejs-datepicker"></script>
 		<script src="https://unpkg.com/vuejs-datepicker/dist/locale/translations/fi.js"></script>
 		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
