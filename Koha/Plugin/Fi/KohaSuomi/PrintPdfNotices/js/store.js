@@ -62,7 +62,7 @@ const store = new Vuex.Store({
       //searchParams.append('from_address', state.libraryEmail);
 
       axios
-        .get('/api/v1/notices', {
+        .get('/api/v1/contrib/kohasuomi/notices', {
           params: searchParams,
         })
         .then((response) => {
@@ -81,9 +81,9 @@ const store = new Vuex.Store({
           axios
             .get('/api/v1/patrons/' + element.borrowernumber)
             .then((response) => {
-              let brthreeletters = response.data.branchcode.substring(0, 3);
+              let brthreeletters = response.data.library_id.substring(0, 3);
               if (threeletters == brthreeletters) {
-                element.librarycode = response.data.branchcode;
+                element.librarycode = response.data.library_id;
                 commit('pushResults', element);
               }
             })
@@ -100,7 +100,7 @@ const store = new Vuex.Store({
       commit('showLoader', true);
       commit('removeErrors');
       axios
-        .put('/api/v1/notices/' + state.messageId, { status: status })
+        .put('/api/v1/contrib/kohasuomi/notices/' + state.messageId, { status: status })
         .then(() => {
           commit('showLoader', false);
         })

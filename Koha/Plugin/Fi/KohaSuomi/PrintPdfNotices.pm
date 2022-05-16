@@ -8,17 +8,18 @@ use base qw(Koha::Plugins::Base);
 ## We will also need to include any Koha libraries we want to access
 use C4::Context;
 use utf8;
+use JSON;
 
 ## Here we set our plugin version
-our $VERSION = "1.1.4";
+our $VERSION = "1.2.0";
 
 ## Here is our metadata, some keys are required, some are optional
 our $metadata = {
     name            => 'Tulosta ilmoituksia',
     author          => 'Johanna Räisä',
     date_authored   => '2021-10-29',
-    date_updated    => '2021-11-30',
-    minimum_version => '17.05',
+    date_updated    => '2021-05-16',
+    minimum_version => '21.11',
     maximum_version => '',
     version         => $VERSION,
     description     => 'Tulosta ilmoituksia',
@@ -90,6 +91,21 @@ sub tool {
     );
     print $cgi->header(-charset    => 'utf-8');
     print $template->output();
+}
+
+sub api_routes {
+    my ( $self, $args ) = @_;
+
+    my $spec_str = $self->mbf_read('openapi.json');
+    my $spec     = decode_json($spec_str);
+
+    return $spec;
+}
+
+sub api_namespace {
+    my ( $self ) = @_;
+    
+    return 'kohasuomi';
 }
 
 1;

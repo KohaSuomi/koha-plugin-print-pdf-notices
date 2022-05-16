@@ -1,0 +1,209 @@
+{
+  "/notices": {
+    "get": {
+      "x-mojo-to": "Fi::KohaSuomi::PrintPdfNotices::Controllers::NoticeController#list",
+      "operationId": "listNotices",
+      "x-koha-authorization": {
+        "permissions": {
+          "plugins": "tool"
+        }
+      },
+      "parameters": [
+        {
+          "name": "borrowernumber",
+          "in": "query",
+          "description": "Patron's borrowernumber",
+          "required": false,
+          "type": "integer"
+        },
+        {
+          "name": "subject",
+          "in": "query",
+          "description": "Case insensative 'starts-with' search on subject",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "content",
+          "in": "query",
+          "description": "Case insensative 'starts_with' search on content",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "metadata",
+          "in": "query",
+          "description": "Case insensative 'starts_with' search on metadata",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "message_transport_type",
+          "in": "query",
+          "description": "Case insensative 'starts_with' search on message transport type",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "letter_code",
+          "in": "query",
+          "description": "Letter code",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "status",
+          "in": "query",
+          "description": "Status code",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "time_queued_start",
+          "in": "query",
+          "description": "Search notices after given time",
+          "required": false,
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "name": "time_queued_end",
+          "in": "query",
+          "description": "Search notices before given time",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "to_address",
+          "in": "query",
+          "description": "Case insensative 'starts_with' search on to address",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "from_address",
+          "in": "query",
+          "description": "Case insensative 'starts_with' search on from address",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "content_type",
+          "in": "query",
+          "description": "Case insensative 'starts_with' search on content type",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "delivery_note",
+          "in": "query",
+          "description": "Case insensative 'starts_with' search on delivery note",
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "tags": [
+        "Notices"
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "responses": {
+        "200": {
+          "description": "List notices",
+          "schema": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        },
+        "401": {
+          "description": "Unauthorized",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "404": {
+          "description": "An error occured",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "error": {
+                "description": "SSN not found",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "500": {
+          "description": "Internal error",
+          "schema": {
+            "type": "object"
+          }
+        }
+      }
+    }
+  },
+  "/notices/{notice_id}": {
+    "put": {
+      "x-mojo-to": "Fi::KohaSuomi::PrintPdfNotices::Controllers::NoticeController#update",
+      "operationId": "updateNotice",
+      "tags": [
+        "Notices"
+      ],
+      "parameters": [
+        {
+          "name": "notice_id",
+          "in": "path",
+          "description": "Identifier",
+          "required": true,
+          "type": "integer"
+        },
+        {
+          "name": "body",
+          "in": "body",
+          "description": "A JSON object containing updated fields",
+          "required": true,
+          "schema": {
+            "type": "object"
+          }
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "responses": {
+        "200": {
+          "description": "Notice",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "404": {
+          "description": "An error occured",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "error": {
+                "description": "Labels not found",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "500": {
+          "description": "Internal error",
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "x-koha-authorization": {
+        "permissions": {
+          "borrowers": "edit_borrowers"
+        }
+      }
+    }
+  }
+}
