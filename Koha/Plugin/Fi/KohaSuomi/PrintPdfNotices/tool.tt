@@ -11,9 +11,11 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
 		<link href="[% PLUGIN_PATH %]/assets/css/bootstrap.min.css" rel="stylesheet" />
 		<link href="[% PLUGIN_PATH %]/assets/css/light-bootstrap-dashboard.css?v=2.0.0 " rel="stylesheet" />
+		<link rel="stylesheet" href="https://unpkg.com/vue-multiselect@2.1.0/dist/vue-multiselect.min.css">
 		<!-- Custom styles for this template-->
 		<script src="https://unpkg.com/vue@2.6.14/dist/vue.min.js"></script>
 		<script src="https://unpkg.com/vuex@3.6.2/dist/vuex.min.js"></script>
+		<script src="https://unpkg.com/vue-multiselect@2.1.0"></script>
 		<script src="https://unpkg.com/vuejs-datepicker"></script>
 		<script src="https://unpkg.com/vuejs-datepicker/dist/locale/translations/fi.js"></script>
 		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -89,6 +91,11 @@
 								</div>
 							</div>
 							<div v-else>
+								<div class="row mb-4">
+									<div class="col-sm-4">
+										<multiselect v-model="selectedLibraries" :options="libraries" :multiple="true" placeholder="Suodata" label="name" :close-on-select="false" track-by="name" :show-labels="false" @input="selectLibraries()"></multiselect>
+									</div>
+								</div>
 								<table v-if="results.length != 0" class="table table-hover table-striped">
 									<thead>
 										<th>Aikaleima</th>

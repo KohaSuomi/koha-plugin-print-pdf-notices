@@ -10,6 +10,8 @@ const store = new Vuex.Store({
     libraryEmail: '',
     libraryName: '',
     userLibrary: '',
+    libraries: [],
+    selectedLibraries: []
   },
   mutations: {
     addError(state, value) {
@@ -20,6 +22,12 @@ const store = new Vuex.Store({
     },
     addResults(state, value) {
       state.results = value;
+    },
+    addLibraries(state, value) {
+      state.libraries = value;
+    },
+    addSelectedLibraries(state, value) {
+      state.selectedLibraries = value;
     },
     pushResults(state, value) {
       state.results.push(value);
@@ -59,7 +67,7 @@ const store = new Vuex.Store({
       searchParams.append('status', 'pending');
       searchParams.append('message_transport_type', 'print');
       searchParams.append('letter_code', state.pdfTemp);
-      //searchParams.append('from_address', state.libraryEmail);
+      searchParams.append('from_address', state.libraryEmail);
 
       axios
         .get('/api/v1/contrib/kohasuomi/notices', {
@@ -73,16 +81,36 @@ const store = new Vuex.Store({
           commit('addError', error.response.data.error);
         });
     },
+    fetchLibraries({ commit, state }) {
+      commit('removeErrors');
+      commit('showLoader', true);
+      commit('addLibraries', []);
+      var searchParams = new URLSearchParams();
+      searchParams.append('_per_page', -1);
+
+      axios
+        .get('/api/v1/libraries', {
+          params: searchParams,
+        })
+        .then((response) => {
+          commit('addLibraries', response.data);
+        })
+        .catch((error) => {
+          commit('showLoader', false);
+          commit('addError', error.response.data.error);
+        });
+    },
     async getPatrons({ commit, state }, payload) {
-      let threeletters = state.userLibrary.substring(0, 3); // This works only if library code's municipal code size is three characters.
       const promises = [];
       payload.forEach((element) => {
         promises.push(
           axios
             .get('/api/v1/patrons/' + element.borrowernumber)
             .then((response) => {
-              let brthreeletters = response.data.library_id.substring(0, 3);
-              if (threeletters == brthreeletters) {
+              if (state.selectedLibraries.find(o => o.library_id === response.data.library_id)) {
+                element.librarycode = response.data.library_id;
+                commit('pushResults', element);
+              } else if (state.selectedLibraries.length === 0) {
                 element.librarycode = response.data.library_id;
                 commit('pushResults', element);
               }

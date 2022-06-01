@@ -1,13 +1,22 @@
 import store from './store.js';
 
+const Multiselect = Vue.component(
+  'vue-multiselect',
+  window.VueMultiselect.default
+);
+
 new Vue({
   el: '#viewApp',
   store: store,
+  components: {
+    Multiselect
+  },
   data() {
     return {
       showPDF: false,
       pagename: '',
       pdftemp: '',
+      selectedLibraries: []
     };
   },
   mounted() {
@@ -15,8 +24,11 @@ new Vue({
     store.commit('setLibraryEmail', jsondata.libraryemail);
     store.commit('setLibraryName', jsondata.libraryname);
     store.commit('setPDFTemp', 'HOLD');
+    this.selectedLibraries = JSON.parse(localStorage.getItem('printLibraries'));
+    store.commit('addSelectedLibraries', this.selectedLibraries);
     this.pagename = 'Noutoilmoitukset';
     this.fetch();
+    store.dispatch('fetchLibraries');
   },
   computed: {
     results() {
@@ -36,6 +48,9 @@ new Vue({
     },
     libraryname() {
       return store.state.libraryName;
+    },
+    libraries() {
+      return store.state.libraries;
     },
   },
   methods: {
@@ -70,6 +85,14 @@ new Vue({
     cancelNotice(message_id) {
       store.commit('setMessageId', message_id);
       store.dispatch('editNotice', 'failed');
+      this.fetch();
+    },
+    selectLibraries() {
+      localStorage.setItem(
+        'printLibraries',
+        JSON.stringify(this.selectedLibraries)
+      );
+      store.commit('addSelectedLibraries', this.selectedLibraries);
       this.fetch();
     },
     printPDF() {
