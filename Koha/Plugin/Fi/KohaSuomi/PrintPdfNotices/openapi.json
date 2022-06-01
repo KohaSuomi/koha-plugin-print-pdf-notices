@@ -95,7 +95,7 @@
           "type": "string"
         },
         {
-          "name": "delivery_note",
+          "name": "failure_code",
           "in": "query",
           "description": "Case insensative 'starts_with' search on delivery note",
           "required": false,

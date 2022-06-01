@@ -24,7 +24,7 @@ new Vue({
     store.commit('setLibraryEmail', jsondata.libraryemail);
     store.commit('setLibraryName', jsondata.libraryname);
     store.commit('setPDFTemp', 'HOLD');
-    this.selectedLibraries = JSON.parse(localStorage.getItem('printLibraries'));
+    this.selectedLibraries = JSON.parse(localStorage.getItem('printLibraries')) ? JSON.parse(localStorage.getItem('printLibraries')) : [];
     store.commit('addSelectedLibraries', this.selectedLibraries);
     this.pagename = 'Noutoilmoitukset';
     this.fetch();

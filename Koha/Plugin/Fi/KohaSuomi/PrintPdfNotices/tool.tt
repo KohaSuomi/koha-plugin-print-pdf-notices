@@ -120,7 +120,7 @@
 									</tbody>
 								</table>
 								<div v-if="results.length == 0" :class="{'d-none': showLoader }" class="alert alert-warning" role="alert">
-									Ei odottavia ilmoituksia kirjastopisteelle {{libraryname}}!
+									Ei odottavia ilmoituksia!
 								</div>
 							</div>
 							<div :class="{'d-none': !showLoader }">
