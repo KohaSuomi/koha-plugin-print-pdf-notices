@@ -8,23 +8,12 @@
 		<meta name="author" content="">
 
 		<!-- Bootstrap core CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
-		<link href="[% PLUGIN_PATH %]/assets/css/bootstrap.min.css" rel="stylesheet" />
-		<link href="[% PLUGIN_PATH %]/assets/css/light-bootstrap-dashboard.css?v=2.0.0 " rel="stylesheet" />
-		<link rel="stylesheet" href="https://unpkg.com/vue-multiselect@2.1.0/dist/vue-multiselect.min.css">
+		<link href="[% PLUGIN_PATH %]/includes/bootstrap.min.css" rel="stylesheet" />
+		<link href="[% PLUGIN_PATH %]/includes/light-bootstrap-dashboard.css?v=2.0.0 " rel="stylesheet" />
 		<!-- Custom styles for this template-->
-		<script src="https://unpkg.com/vue@2.6.14/dist/vue.min.js"></script>
-		<script src="https://unpkg.com/vuex@3.6.2/dist/vuex.min.js"></script>
-		<script src="https://unpkg.com/vue-multiselect@2.1.0"></script>
-		<script src="https://unpkg.com/vuejs-datepicker"></script>
-		<script src="https://unpkg.com/vuejs-datepicker/dist/locale/translations/fi.js"></script>
-		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
-		<script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="https://printjs-4de6.kxcdn.com/print.min.css">
-		<!--     Fonts and icons     -->
-		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-		<!-- CSS Files -->
+		<link rel="stylesheet" href="[% PLUGIN_PATH %]/includes/vue-multiselect.min.css">
+		<link rel="stylesheet" type="text/css" href="[% PLUGIN_PATH %]/includes/print.min.css">
+		<link rel="stylesheet" href="[% PLUGIN_PATH %]/css/pdf.css">
 	</head>
 	<body>	
 		<div class="wrapper" id="viewApp">
@@ -139,13 +128,18 @@
 		<!-- Bootstrap core JavaScript
 		================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-		<!-- Icons -->
-		<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+		<script src="[% PLUGIN_PATH %]/includes/vue.min.js"></script>
+		<script src="[% PLUGIN_PATH %]/includes/vuex.min.js"></script>
+		<script src="[% PLUGIN_PATH %]/includes/vue-multiselect.min.js"></script>
+		<script src="[% PLUGIN_PATH %]/includes/vuejs-datepicker.min.js"></script>
+		<script src="[% PLUGIN_PATH %]/includes/vuejs-datepicker-fi.js"></script>
+		<script src="[% PLUGIN_PATH %]/includes/axios.min.js"></script>
+		<script src="[% PLUGIN_PATH %]/includes/moment-with-locales.min.js"></script>
+		<script src="[% PLUGIN_PATH %]/includes/print.min.js"></script>
+		<script src="[% PLUGIN_PATH %]/includes/jquery.3.2.1.min.js"></script>
+		<script src="[% PLUGIN_PATH %]/includes/popper.min.js"></script>
+		<script src="[% PLUGIN_PATH %]/includes/bootstrap.min.js"></script>
 		<script type="module" src="[% PLUGIN_PATH %]/js/main.js"></script>
-		<link rel="stylesheet" href="[% PLUGIN_PATH %]/css/pdf.css">
 		<script>
 			var jsondata = JSON.parse('[% data %]');
 		</script>
