@@ -16,6 +16,15 @@
 		<link rel="stylesheet" href="[% PLUGIN_PATH %]/css/pdf.css">
 	</head>
 	<body>	
+
+		<!-- Breadcrumb -->
+        <nav aria-label="breadcrumb" class="main-breadcrumb">
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/cgi-bin/koha/mainpage.pl">Etusivu</a></li>
+            <li class="breadcrumb-item"><a href="/cgi-bin/koha/plugins/plugins-home.pl">Liitännäiset</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Tulosta ilmoituksia</li>
+            </ol>
+        </nav>
 		<div class="wrapper" id="viewApp">
 			<div class="sidebar" data-color="green" data-image="[% PLUGIN_PATH %]/assets/img/sidebar-5.jpg">
 				<div class="sidebar-wrapper">
