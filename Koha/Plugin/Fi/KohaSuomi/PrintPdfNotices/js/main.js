@@ -86,6 +86,10 @@ new Vue({
       store.commit('setMessageId', message_id);
       store.dispatch('editNotice', 'failed');
     },
+    cancelNoticeInPreview() {
+      store.dispatch('editNotice', 'failed');
+      this.showPDF = false;
+    },
     selectLibraries() {
       localStorage.setItem(
         'printLibraries',
