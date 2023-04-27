@@ -85,7 +85,6 @@ new Vue({
     cancelNotice(message_id) {
       store.commit('setMessageId', message_id);
       store.dispatch('editNotice', 'failed');
-      this.fetch();
     },
     selectLibraries() {
       localStorage.setItem(
