@@ -67,7 +67,6 @@ const store = new Vuex.Store({
       searchParams.append('status', 'pending');
       searchParams.append('message_transport_type', 'print');
       searchParams.append('letter_code', state.pdfTemp);
-      searchParams.append('from_address', state.libraryEmail);
 
       axios
         .get('/api/v1/contrib/kohasuomi/notices', {
