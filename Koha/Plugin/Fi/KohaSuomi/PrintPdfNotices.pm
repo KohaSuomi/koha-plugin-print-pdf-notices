@@ -22,7 +22,7 @@ our $metadata = {
     minimum_version => '21.11',
     maximum_version => '',
     version         => $VERSION,
-    description     => 'Tulosta ilmoituksia',
+    description     => 'Tulosta ilmoituksia. (Paikalliskannoista vain Siili, Helle ja Kyyti)',
 };
 
 ## This is the minimum code required for a plugin's 'new' method
