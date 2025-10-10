@@ -112,7 +112,7 @@ new Vue({
   },
   filters: {
     moment: function (date) {
-      return moment(date).locale('fi').format('DD.MM.YYYY HH:MM:SS');
+      return moment(date).locale('fi').format('DD.MM.YYYY HH:mm:ss');
     },
   },
 });
