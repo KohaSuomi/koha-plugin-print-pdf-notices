@@ -57,6 +57,9 @@ const store = new Vuex.Store({
     showLoader(state, value) {
       state.showLoader = value;
     },
+    removeResults(state) {
+      state.results = [];
+    },
   },
   actions: {
     fetchMessages({ dispatch, commit, state }) {
@@ -130,7 +133,6 @@ const store = new Vuex.Store({
         .put('/api/v1/contrib/kohasuomi/notices/' + state.messageId, { status: status })
         .then(() => {
           commit('showLoader', false);
-          this.dispatch('fetchMessages');
         })
         .catch((error) => {
           commit('showLoader', false);

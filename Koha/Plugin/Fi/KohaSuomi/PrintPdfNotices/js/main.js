@@ -56,6 +56,7 @@ new Vue({
   methods: {
     showPage(val) {
       store.commit('setPDFTemp', val);
+      store.commit('removeResults');
       if (val == 'ODUE1') {
         this.pagename = '1. muistutus';
         this.fetch();
