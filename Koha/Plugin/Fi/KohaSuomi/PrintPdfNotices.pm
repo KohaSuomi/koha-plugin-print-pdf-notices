@@ -7,6 +7,7 @@ use Modern::Perl;
 use base qw(Koha::Plugins::Base);
 ## We will also need to include any Koha libraries we want to access
 use C4::Context;
+use C4::Languages;
 use utf8;
 use JSON;
 
@@ -15,15 +16,31 @@ our $VERSION = "1.2.0";
 
 ## Here is our metadata, some keys are required, some are optional
 our $metadata = {
-    name            => 'Tulosta ilmoituksia',
     author          => 'Johanna Räisä',
     date_authored   => '2021-10-29',
     date_updated    => '2021-05-16',
     minimum_version => '21.11',
     maximum_version => '',
     version         => $VERSION,
-    description     => 'Tulosta ilmoituksia. (Paikalliskannoista vain Siili, Helle ja Kyyti)',
 };
+
+sub get_localized_metadata {
+    my ($self) = @_;
+    my $lang = C4::Languages::getlanguage() || 'en';
+    my ($name, $description);
+
+    if ( $lang eq 'sv-SE' ) {
+        $name = "Skriv ut meddelanden";
+        $description = "Skriv ut meddelanden. (Lokala databaser, endast Siili, Helle och Kyyti)";
+    } elsif ( $lang eq 'fi-FI' ) {
+        $name = "Tulosta ilmoituksia";
+        $description = "Tulosta ilmoituksia. (Paikalliskannoista vain Siili, Helle ja Kyyti)";
+    } else {
+        $name = "Print notices";
+        $description = "Print notices. (Local databases, only Siili, Helle and Kyyti)";
+    }
+    return ($name, $description);
+}
 
 ## This is the minimum code required for a plugin's 'new' method
 ## More can be added, but none should be removed
@@ -38,6 +55,11 @@ sub new {
     ## This runs some additional magic and checking
     ## and returns our actual 
     my $self = $class->SUPER::new($args);
+
+    my ($name, $description) = $self->get_localized_metadata();
+    $self->{'metadata'}->{'name'} = $name;
+    $self->{'metadata'}->{'description'} = $description;
+
 
     return $self;
 }

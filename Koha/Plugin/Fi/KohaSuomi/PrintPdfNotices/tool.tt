@@ -1,7 +1,16 @@
+[% USE raw %]
+[% USE To %]
+
+[% TRY %]
+    [% PROCESS "$PLUGIN_DIR/i18n/${LANG}.inc" %]
+[% CATCH %]
+    [% PROCESS "$PLUGIN_DIR/i18n/default.inc" %]
+[% END %]
+
 <!DOCTYPE html>
 <html>
 	<head>
-	<title>Koha-Suomi - Tulosta ilmoituksia</title>
+	<title>[% T.tool_1 %]</title>
 	<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta name="description" content="">
@@ -20,34 +29,34 @@
 		<!-- Breadcrumb -->
         <nav aria-label="breadcrumb" class="main-breadcrumb">
             <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/cgi-bin/koha/mainpage.pl">Etusivu</a></li>
-            <li class="breadcrumb-item"><a href="/cgi-bin/koha/plugins/plugins-home.pl">Liitännäiset</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Tulosta ilmoituksia</li>
+            <li class="breadcrumb-item"><a href="/cgi-bin/koha/mainpage.pl">[% T.tool_3 %]</a></li>
+            <li class="breadcrumb-item"><a href="/cgi-bin/koha/plugins/plugins-home.pl">[% T.tool_4 %]</a></li>
+            <li class="breadcrumb-item active" aria-current="page">[% T.tool_5 %]</li>
             </ol>
         </nav>
 		<div class="wrapper" id="viewApp">
 			<div class="sidebar" data-color="green" data-image="[% PLUGIN_PATH %]/assets/img/sidebar-5.jpg">
 				<div class="sidebar-wrapper">
 					<div class="logo">
-						<span class="simple-text">Tulosta ilmoituksia</span>
+						<span class="simple-text">[% T.tool_5 %]</span>
 					</div>
 					<ul class="nav">
 						<li>
 							<a class="nav-link" href="#" @click="showPage('HOLD')">
 								<i class="nc-icon nc-notes"></i>
-								<p>Noutoilmoitukset</p>
+								<p>[% T.tool_6 %]</p>
 							</a>
 						</li>
 						<li>
 							<a class="nav-link" href="#" @click="showPage('ODUE1')">
 								<i class="nc-icon nc-email-85"></i>
-								<p>1. muistutus</p>
+								<p>[% T.tool_7 %]</p>
 							</a>
 						</li>
 						<li>
 							<a class="nav-link" href="#" @click="showPage('ODUE2')">
 								<i class="nc-icon nc-email-85"></i>
-								<p>2. muistutus</p>
+								<p>[% T.tool_8 %]</p>
 							</a>
 						</li>
 					</ul>
@@ -67,7 +76,7 @@
 						<main role="main" class="ml-sm-auto pt-3 px-4">
 						<div>
 							<div class="alert alert-danger" role="alert" v-if="errors.length">
-								<b>Tapahtui virhe:</b>
+								<b>[% T.tool_9 %]</b>
 								<ul class="text-danger">
 									<li v-for="error in errors">{{ error }}</li>
 								</ul>
@@ -75,10 +84,10 @@
 							<div v-if="showPDF">
 								<ul class="nav nav-pills mb-3 mt-3 justify-content-center">
 									<li class="nav-item pr-2">
-										<button class="btn btn-default" v-on:click="back">Takaisin</button>
+										<button class="btn btn-default" v-on:click="back">[% T.tool_10 %]</button>
 									</li>
 									<li class="nav-item pr-2">
-										<button class="btn btn-success btn-fill" v-on:click="printPDF">Tulosta</button>
+										<button class="btn btn-success btn-fill" v-on:click="printPDF">[% T.tool_11 %]</button>
 									</li>
 								</ul>
 								<hr/>
@@ -96,12 +105,12 @@
 								</div>
 								<table v-if="results.length != 0" class="table table-hover table-striped">
 									<thead>
-										<th>Aikaleima</th>
-										<th>AsiakasId</th>
-										<th>Kirjastopiste</th>
-										<th>Sähköposti</th>
-										<th>Kirjaston sähköposti</th>
-										<th>Toiminnot</th>
+										<th>[% T.tool_12 %]</th>
+										<th>[% T.tool_13 %]</th>
+										<th>[% T.tool_14 %]</th>
+										<th>[% T.tool_15 %]</th>
+										<th>[% T.tool_16 %]</th>
+										<th>[% T.tool_17 %]</th>
 									</thead>
 									<tbody>
 										<tr v-for="result in results" :key="result.message_id">
@@ -111,15 +120,13 @@
 											<td>{{result.to_address}}</td>
 											<td>{{result.from_address}}</td>
 											<td>
-												<button class="btn btn-success btn-fill" v-on:click="previewPDF(result.content, result.message_id)">Tulosta</button>
-												<button class="btn btn-danger btn-fill" v-on:click="cancelNotice(result.message_id)">Peruuta</button>
+												<button class="btn btn-success btn-fill" v-on:click="previewPDF(result.content, result.message_id)">[% T.tool_11 %]</button>
+												<button class="btn btn-danger btn-fill" v-on:click="cancelNotice(result.message_id)">[% T.tool_18 %]</button>
 											</td>
 										</tr>
 									</tbody>
 								</table>
-								<div v-if="results.length == 0" :class="{'d-none': showLoader }" class="alert alert-warning" role="alert">
-									Ei odottavia ilmoituksia!
-								</div>
+								<div v-if="results.length == 0" :class="{'d-none': showLoader }" class="alert alert-warning" role="alert">[% T.tool_19 %]</div>
 							</div>
 							<div :class="{'d-none': !showLoader }">
 								<div class="row w-100 p-3">
@@ -151,6 +158,7 @@
 		<script type="module" src="[% PLUGIN_PATH %]/js/main.js"></script>
 		<script>
 			var jsondata = JSON.parse('[% data %]');
+			var translations = JSON.parse('[% To.json(T) | $raw %]');
 		</script>
 		<style>
 			.odd-cell {

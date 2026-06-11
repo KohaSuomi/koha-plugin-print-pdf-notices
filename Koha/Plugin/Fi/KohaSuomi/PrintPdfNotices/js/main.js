@@ -26,7 +26,7 @@ new Vue({
     store.commit('setPDFTemp', 'HOLD');
     this.selectedLibraries = JSON.parse(localStorage.getItem('printLibraries')) ? JSON.parse(localStorage.getItem('printLibraries')) : [];
     store.commit('addSelectedLibraries', this.selectedLibraries);
-    this.pagename = 'Noutoilmoitukset';
+    this.pagename = translations.tool_6;
     this.fetch();
     store.dispatch('fetchLibraries');
   },
@@ -58,15 +58,15 @@ new Vue({
       store.commit('setPDFTemp', val);
       store.commit('removeResults');
       if (val == 'ODUE1') {
-        this.pagename = '1. muistutus';
+        this.pagename = translations.tool_7;
         this.fetch();
       }
       if (val == 'ODUE2') {
-        this.pagename = '2. muistutus';
+        this.pagename = translations.tool_8;
         this.fetch();
       }
       if (val == 'HOLD') {
-        this.pagename = 'Noutoilmoitukset';
+        this.pagename = translations.tool_6;
         this.fetch();
       }
     },
