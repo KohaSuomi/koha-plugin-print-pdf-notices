@@ -129,7 +129,7 @@ const store = new Vuex.Store({
     editNotice({ commit, state }, status) {
       commit('showLoader', true);
       commit('removeErrors');
-      axios
+      return axios
         .put('/api/v1/contrib/kohasuomi/notices/' + state.messageId, { status: status })
         .then(() => {
           commit('showLoader', false);
