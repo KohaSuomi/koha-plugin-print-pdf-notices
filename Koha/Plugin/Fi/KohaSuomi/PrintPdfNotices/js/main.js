@@ -83,9 +83,9 @@ new Vue({
       store.commit('setNotice', notice);
       this.printPDF();
     },
-    cancelNotice(message_id) {
+    async cancelNotice(message_id) {
       store.commit('setMessageId', message_id);
-      store.dispatch('editNotice', 'failed');
+      await store.dispatch('editNotice', 'failed');
       this.fetch();
     },
     selectLibraries() {
@@ -96,8 +96,8 @@ new Vue({
       store.commit('addSelectedLibraries', this.selectedLibraries);
       this.fetch();
     },
-    printPDF() {
-      store.dispatch('editNotice', 'sent');
+    async printPDF() {
+      await store.dispatch('editNotice', 'sent');
       printJS({
         printable: 'printDoc',
         type: 'html',
