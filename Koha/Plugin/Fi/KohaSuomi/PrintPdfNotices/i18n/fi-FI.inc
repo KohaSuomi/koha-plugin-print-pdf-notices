@@ -1,6 +1,6 @@
 [%
     T = {
-        tool_1                                     = "Koha-Suomi - Tulosta ilmoituksia",
+        tool_1                                     = "Tulosta ilmoituksia",
         tool_3                                     = "Etusivu",
         tool_4                                     = "Liitännäiset",
         tool_5                                     = "Tulosta ilmoituksia",
@@ -10,13 +10,13 @@
         tool_9                                     = "Tapahtui virhe:",
         tool_10                                    = "Takaisin",
         tool_11                                    = "Tulosta",
-        tool_12                                    = "Aikaleima",
-        tool_13                                    = "Asiakas ID",
-        tool_14                                    = "Kirjastopiste",
+        tool_12                                    = "Päivä ja kellonaika",
+        tool_13                                    = "Asiakas-ID",
+        tool_14                                    = "Kirjasto",
         tool_15                                    = "Sähköposti",
         tool_16                                    = "Kirjaston sähköposti",
         tool_17                                    = "Toiminnot",
-        tool_18                                    = "Peruuta",
-        tool_19                                    = "Ei odottavia ilmoituksia!",
+        tool_18                                    = "Poista",
+        tool_19                                    = "Ei odottavia ilmoituksia",
     }
 %]

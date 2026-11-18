@@ -1,7 +1,7 @@
 [%
     T = {
-        tool_1                                     = "Koha-Suomi - Print notices",
-        tool_3                                     = "Main page",
+        tool_1                                     = "Print notices",
+        tool_3                                     = "Home",
         tool_4                                     = "Plugins",
         tool_5                                     = "Print notices",
         tool_6                                     = "Hold reminders",
@@ -16,7 +16,7 @@
         tool_15                                    = "Email",
         tool_16                                    = "Library email",
         tool_17                                    = "Actions",
-        tool_18                                    = "Cancel",
-        tool_19                                    = "No pending notices!",
+        tool_18                                    = "Remove",
+        tool_19                                    = "No pending notices",
     }
 %]
